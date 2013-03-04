@@ -1,0 +1,8 @@
+put local project into git
+cd D:\workspace\project
+git init
+git add .
+git commit -m 'initial'
+git remote add origin git@github.com:plusxie/project.git
+git pull origin master
+git push origin master
