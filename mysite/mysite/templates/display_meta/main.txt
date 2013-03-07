@@ -1,0 +1,11 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<head>
+    <title>Display META</title>
+</head>
+<body>
+    <table>
+        {% include "sub.txt" %}
+    </table>
+</body>
+</html>

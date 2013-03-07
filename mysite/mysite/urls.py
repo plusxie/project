@@ -1,9 +1,9 @@
 from django.conf.urls import patterns, include, url
 from mysite.views import hello, current_datetime, hours_ahead, display_meta
+from books import views
 from django.contrib import admin
 
 # Uncomment the next two lines to enable the admin:
-from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -12,6 +12,8 @@ urlpatterns = patterns('',
                        (r'^time/plus/(\d{1,2})/$', hours_ahead),
                        (r'^admin/', include(admin.site.urls)),
                        (r'^display_meta/$', display_meta),
+                       (r'^search/$', views.search),
+                       (r'^contact/$', views.contact),
     # Examples:
     # url(r'^$', 'mysite.views.home', name='home'),
     # url(r'^mysite/', include('mysite.foo.urls')),
