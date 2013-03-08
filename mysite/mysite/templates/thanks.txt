@@ -1,0 +1,10 @@
+<html>
+<head>
+    <title>Thanks</title>
+</head>
+<body>
+    <p><strong>Dear friend,</strong></p>
+    <p>Thank you for your letter, </p>
+    <p>we will reply as soon as possible.</strong></p>
+</body>
+</html>

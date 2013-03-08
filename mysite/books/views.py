@@ -2,8 +2,9 @@
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
 from books.models import Book
-from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
+from django.views.decorators.csrf import csrf_exempt
+from books.forms import ContactForm
 
 
 def search(request):
@@ -20,19 +21,21 @@ def search(request):
     return render_to_response('search_form.txt', {'errors': errors})
 
 
+@csrf_exempt
 def contact(request):
-    errors = []
     if request.method == 'POST':
-        if not request.POST.get('subject', ''):
-            errors.append('Enter a subject.')
-        if not request.POST.get('message', ''):
-            errors.append('Enter a message.')
-        if request.POST.get('email') and '@' not in request.POST['email']:
-            errors.append('Enter a valid e-mail address.')
-        if not errors:
-            send_mail(
-                request.POST['subject'],
-                request.POST['message'],
-                request.POST.get('email', 'noreply@example.com'), ['siteowner@example.com'],)
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            # cd = form.cleaned_data
+            # send_mail(
+            #     request.POST['subject'],
+            #     request.POST['message'],
+            #     request.POST.get('email', 'noreply@example.com'), ['siteowner@example.com'],)
             return HttpResponseRedirect('/contact/thanks/')
-    return render_to_response('contact_form.txt', {'errors': errors})
+    else:
+        form = ContactForm(initial={'subject': 'I love your site!'})
+    return render_to_response('contact_form.txt', {'form': form})
+
+
+def thanks(request):
+    return render_to_response('thanks.txt')
