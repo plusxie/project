@@ -1,8 +1,6 @@
 __author__ = 'xyb'
 
 from django.shortcuts import render_to_response
-from django.template.loader import get_template
-from django.template import Template, Context
 from django.http import HttpResponse,Http404
 import datetime
 
